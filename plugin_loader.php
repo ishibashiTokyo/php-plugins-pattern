@@ -4,6 +4,11 @@ class pluginLoader
     private static $plugin_directorys = [];
     private static $plugins = [];
 
+    /**
+     * プラグインの読み込み
+     *
+     * @return void
+     */
     public static function load()
     {
         self::$plugin_directorys = glob('plugins/*', GLOB_ONLYDIR);
@@ -19,6 +24,16 @@ class pluginLoader
         }
     }
 
+    /**
+     * イベントリスナー
+     * 引数を元に各プラグインのメソッドを実行
+     *
+     * @todo 第二引数が気に入らない、いろんな型を使うだろうし悩む
+     *
+     * @param string $trigger
+     * @param [type] $value
+     * @return void
+     */
     public static function event(string $trigger, $value = null)
     {
         foreach (self::$plugins as $plugin) {
